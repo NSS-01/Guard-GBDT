@@ -3,7 +3,7 @@
 ## Introduction
 The code of  Guard-GBDT is on [application/GBDT](application/GBDT).
 This project is a secure multi-party computation library that designs and implements privacy-preserving computation protocols based on arithmetic secret sharing and function secret sharing.
-It also utilizes these protocols to implement the application of privacy-preserving machine learning, specifically privacy-preserving neural network inference.
+It also utilizes these protocols to implement the application of privacy-preserving machine learning.
 
 ## Installation tutorial
 This project requires PyTorch>=1.8.0, and it is recommended to use PyTorch==1.8.0.
@@ -17,8 +17,7 @@ pip install -r requirements.txt
 All test codes needs to be run in the project root directory, as shown in the following example:
 ```
 # Open two terminals and input the following code in each terminal:
-python debug/application/neural_network/2pc/neural_network_server.py
-python debug/application/neural_network/2pc/neural_network_client.py
+python application/GBDT/SecureGBDT/secure_training_protocol.py
 ```
 If you cannot start using the above command, try adding the following code to the beginning of the corresponding test file:
 ```python
