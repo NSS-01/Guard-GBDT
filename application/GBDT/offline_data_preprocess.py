@@ -61,102 +61,102 @@ def config_dataset():
         torch.save((m0,threshold,client_data),client_file_path )
         torch.save((m0,threshold,server_data), server_file_path )
 
-    # '''breast_cancer'''
-    # breast_cancer = load_breast_cancer()
-    # X, y = breast_cancer.data, breast_cancer.target
-    # y = y.reshape(-1, 1)
-    # num_bins = 8
-    # binner = KBinsDiscretizer(n_bins=num_bins, encode='ordinal', strategy="uniform")
-    # X = binner.fit_transform(X)
-    # # 使用 VarianceThreshold 移除常量特征
-    # selector = VarianceThreshold(threshold=0)  # 0 表示移除方差为 0 的特征，即常量特征
-    # X_reduced = selector.fit_transform(X)
-    # X_train, X_test, y_train, y_test = train_test_split(X_reduced, y, test_size=0.2, random_state=2023)
-    # torch.save((X_train, X_test, y_train, y_test), './data/breast_cancer.pth')
-    # data = np.hstack((X_train, y_train.reshape(-1, 1)))
-    # thresholds = unique_values_by_column(torch.tensor(data))
-    #
-    # m = len(data[0])
-    #
-    # m0 = m // 2
-    # # print(data[:, 0:m0])
-    # # print(data[:, m0:])
-    # client_data = np.zeros(data.shape)
-    # client_data[:, 0:m0] = data[:, 0:m0]
-    # server_data = np.zeros(data.shape)
-    # server_data[:, m0:] = data[:, m0:]
-    # client_data, server_data = torch.tensor(client_data, dtype=torch.int64), torch.tensor(server_data,
-    #                                                                                       dtype=torch.int64)
-    # torch.save((m0,thresholds,client_data),'./data/breast_cancer_client_data.pth')
-    # torch.save((m0,thresholds,server_data),'./data/breast_cancer_server_data.pth')
-    # print(f"breast_cancer is done")
-    # "phishing_websites"
-    # # fetch dataset
-    # phishing_websites = fetch_ucirepo(id=327)
-    #
-    # data = phishing_websites.data
-    #
-    # X = phishing_websites.data.features
-    # y = phishing_websites.data.targets
-    # y = np.where(y == -1, 0, y)
-    #
-    # # y = (np.array(phishing_websites.data.targets).reshape(-1)>0)*1
-    # num_bins = 8
-    # binner = KBinsDiscretizer(n_bins=num_bins, encode='ordinal', strategy="uniform")
-    # X = binner.fit_transform(X)
-    # # 使用 VarianceThreshold 移除常量特征
-    # selector = VarianceThreshold(threshold=0)  # 0 表示移除方差为 0 的特征，即常量特征
-    # X_reduced = selector.fit_transform(X)
-    # X_train, X_test, y_train, y_test = train_test_split(X_reduced, y, test_size=0.2, random_state=2028)
-    # torch.save((X_train, X_test, y_train, y_test), './data/phishing_websites.pth')
-    # data = np.hstack((X_train, y_train.reshape(-1, 1)))
-    # thresholds = unique_values_by_column(torch.tensor(data))
-    # save(thresholds, data, 'phishing_websites')
-    # print(f"phishing_websites is done")
-    #
-    #
-    # "credit"
-    # # fetch dataset
-    # default_of_credit_card_clients = fetch_ucirepo(id=350)
-    #
-    # # data (as pandas dataframes)
-    # X = default_of_credit_card_clients.data.features
-    # y = default_of_credit_card_clients.data.targets
-    # X = X.to_numpy()
-    # y = y.to_numpy()
-    # num_bins = 8
-    # binner = KBinsDiscretizer(n_bins=num_bins, encode='ordinal', strategy="uniform")
-    # X = binner.fit_transform(X)
-    # # 使用 VarianceThreshold 移除常量特征
-    # selector = VarianceThreshold(threshold=0)  # 0 表示移除方差为 0 的特征，即常量特征
-    # X_reduced = selector.fit_transform(X)
-    # X_train, X_test, y_train, y_test = train_test_split(X_reduced, y, test_size=0.2, random_state=2028)
-    # torch.save((X_train, X_test, y_train, y_test), './data/credit.pth')
-    # data = np.hstack((X_train, y_train.reshape(-1, 1)))
-    # thresholds = unique_values_by_column(torch.tensor(data))
-    # save(thresholds, data, 'credit')
-    # print(f"credit is done")
-    # "skin"
-    # # fetch dataset
-    # skin_segmentation = fetch_ucirepo(id=229)
-    #
-    # # data (as pandas dataframes)
-    # X = skin_segmentation.data.features
-    # y = skin_segmentation.data.targets
-    # X = X.to_numpy()
-    # y = y.to_numpy()
-    # num_bins = 8
-    # binner = KBinsDiscretizer(n_bins=num_bins, encode='ordinal', strategy="uniform")
-    # X = binner.fit_transform(X)
-    # # 使用 VarianceThreshold 移除常量特征
-    # selector = VarianceThreshold(threshold=0)  # 0 表示移除方差为 0 的特征，即常量特征
-    # X_reduced = selector.fit_transform(X)
-    # X_train, X_test, y_train, y_test = train_test_split(X_reduced, y == 0, test_size=0.2, random_state=2031)
-    # torch.save((X_train, X_test, y_train, y_test), './data/skin.pth')
-    # data = np.hstack((X_train, y_train.reshape(-1, 1)))
-    # thresholds = unique_values_by_column(torch.tensor(data))
-    # save(thresholds, data, 'skin')
-    # print(f"skin is done")
+    '''breast_cancer'''
+    breast_cancer = load_breast_cancer()
+    X, y = breast_cancer.data, breast_cancer.target
+    y = y.reshape(-1, 1)
+    num_bins = 8
+    binner = KBinsDiscretizer(n_bins=num_bins, encode='ordinal', strategy="uniform")
+    X = binner.fit_transform(X)
+    # 使用 VarianceThreshold 移除常量特征
+    selector = VarianceThreshold(threshold=0)  # 0 表示移除方差为 0 的特征，即常量特征
+    X_reduced = selector.fit_transform(X)
+    X_train, X_test, y_train, y_test = train_test_split(X_reduced, y, test_size=0.2, random_state=2023)
+    torch.save((X_train, X_test, y_train, y_test), './data/breast_cancer.pth')
+    data = np.hstack((X_train, y_train.reshape(-1, 1)))
+    thresholds = unique_values_by_column(torch.tensor(data))
+    
+    m = len(data[0])
+    
+    m0 = m // 2
+    # print(data[:, 0:m0])
+    # print(data[:, m0:])
+    client_data = np.zeros(data.shape)
+    client_data[:, 0:m0] = data[:, 0:m0]
+    server_data = np.zeros(data.shape)
+    server_data[:, m0:] = data[:, m0:]
+    client_data, server_data = torch.tensor(client_data, dtype=torch.int64), torch.tensor(server_data,
+                                                                                          dtype=torch.int64)
+    torch.save((m0,thresholds,client_data),'./data/breast_cancer_client_data.pth')
+    torch.save((m0,thresholds,server_data),'./data/breast_cancer_server_data.pth')
+    print(f"breast_cancer is done")
+    "phishing_websites"
+    # fetch dataset
+    phishing_websites = fetch_ucirepo(id=327)
+    
+    data = phishing_websites.data
+    
+    X = phishing_websites.data.features
+    y = phishing_websites.data.targets
+    y = np.where(y == -1, 0, y)
+    
+    # y = (np.array(phishing_websites.data.targets).reshape(-1)>0)*1
+    num_bins = 8
+    binner = KBinsDiscretizer(n_bins=num_bins, encode='ordinal', strategy="uniform")
+    X = binner.fit_transform(X)
+    # 使用 VarianceThreshold 移除常量特征
+    selector = VarianceThreshold(threshold=0)  # 0 表示移除方差为 0 的特征，即常量特征
+    X_reduced = selector.fit_transform(X)
+    X_train, X_test, y_train, y_test = train_test_split(X_reduced, y, test_size=0.2, random_state=2028)
+    torch.save((X_train, X_test, y_train, y_test), './data/phishing_websites.pth')
+    data = np.hstack((X_train, y_train.reshape(-1, 1)))
+    thresholds = unique_values_by_column(torch.tensor(data))
+    save(thresholds, data, 'phishing_websites')
+    print(f"phishing_websites is done")
+    
+    
+    "credit"
+    # fetch dataset
+    default_of_credit_card_clients = fetch_ucirepo(id=350)
+    
+    # data (as pandas dataframes)
+    X = default_of_credit_card_clients.data.features
+    y = default_of_credit_card_clients.data.targets
+    X = X.to_numpy()
+    y = y.to_numpy()
+    num_bins = 8
+    binner = KBinsDiscretizer(n_bins=num_bins, encode='ordinal', strategy="uniform")
+    X = binner.fit_transform(X)
+    # 使用 VarianceThreshold 移除常量特征
+    selector = VarianceThreshold(threshold=0)  # 0 表示移除方差为 0 的特征，即常量特征
+    X_reduced = selector.fit_transform(X)
+    X_train, X_test, y_train, y_test = train_test_split(X_reduced, y, test_size=0.2, random_state=2028)
+    torch.save((X_train, X_test, y_train, y_test), './data/credit.pth')
+    data = np.hstack((X_train, y_train.reshape(-1, 1)))
+    thresholds = unique_values_by_column(torch.tensor(data))
+    save(thresholds, data, 'credit')
+    print(f"credit is done")
+    "skin"
+    # fetch dataset
+    skin_segmentation = fetch_ucirepo(id=229)
+    
+    # data (as pandas dataframes)
+    X = skin_segmentation.data.features
+    y = skin_segmentation.data.targets
+    X = X.to_numpy()
+    y = y.to_numpy()
+    num_bins = 8
+    binner = KBinsDiscretizer(n_bins=num_bins, encode='ordinal', strategy="uniform")
+    X = binner.fit_transform(X)
+    # 使用 VarianceThreshold 移除常量特征
+    selector = VarianceThreshold(threshold=0)  # 0 表示移除方差为 0 的特征，即常量特征
+    X_reduced = selector.fit_transform(X)
+    X_train, X_test, y_train, y_test = train_test_split(X_reduced, y == 0, test_size=0.2, random_state=2031)
+    torch.save((X_train, X_test, y_train, y_test), './data/skin.pth')
+    data = np.hstack((X_train, y_train.reshape(-1, 1)))
+    thresholds = unique_values_by_column(torch.tensor(data))
+    save(thresholds, data, 'skin')
+    print(f"skin is done")
 
 
     '''
