@@ -194,4 +194,4 @@ if __name__ == '__main__':
         Path(model_path).mkdir(parents=True,exist_ok=True)
     print("正在离线加载....")
     config_dataset()
-    # gen_key()
+    gen_key()
