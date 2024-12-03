@@ -159,7 +159,6 @@ def _get_carry_bit(x, size: int) -> RingTensor:
     g_layer = g_layer1
 
     layer_total = int(math.log2(BIT_LEN))
-    time.sleep(1)
     for i in range(2, layer_total - 1):
         p_layer, g_layer = _get_p_and_g(p_layer, g_layer, x.party, BIT_LEN // (2 ** i), BIT_LEN // (2 ** (i + 1)),
                                         False)
