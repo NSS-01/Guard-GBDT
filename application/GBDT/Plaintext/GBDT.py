@@ -24,7 +24,7 @@ class GBDT:
         """计算 sigmoid 函数的值"""
         return 1 / (1 + np.exp(-x))
     def HEP_XGB_sigmoid(self,x):
-        return 0.5+0.7*x/(1+np.abs(x))
+        return 0.5+0.5*x/(1+np.abs(x))
     def create_sigmoid_lookup_table(self, n):
         """
         创建查找表 LUT_delta，包含分段的 sigmoid 值。
@@ -179,6 +179,8 @@ class DecisionTree:
             if self.alg == "Ours":
                 gain = (H - HL) * (GL ** 2) + (H - HR) * (
                         GR ** 2)
+                b= (H>2*HL)
+                gain = gain*b+(1-b)*(-gain)
             else:
                 gain = 0.5*((GL**2)/(HL+self.reg_lambda) + (GR**2)/(HR+self.reg_lambda + beta)-(G**2)/(self.reg_lambda+H))
             gain = gain.squeeze(-1)
@@ -254,7 +256,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--lr",
         type=float,
-        default=1,
+        default=0.4,
         help="learning learning (default:0.1)}"
     )
 

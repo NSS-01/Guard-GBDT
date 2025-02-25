@@ -181,7 +181,9 @@ def SeureFindBestSplit(args,m0,data,gradient:ArithmeticSecretSharing, hessian:Ar
         t = threshold.to(torch.int).view(-1)
         ts = ArithmeticSecretSharing(RingTensor.convert_to_ring(t*share_w.party.party_id*1.0),party=share_w.party)
         if args.alg_type=="Ours":
+            b= (H>2*HL)
             gain = (H - HL) * (GL*GL) + (H - HR) * (GR*GR)
+            gain = gain * b + (1 - b) * (-gain)
         else:
             gain = ((GL*GL)/(HL+0.01)+(GR*GR)/(HR+0.01)+(G*G)/(H+0.01))*RingTensor.convert_to_ring(0.5)
         gain = gain.squeeze(0)
@@ -310,14 +312,14 @@ if __name__ == '__main__':
     parser.add_argument(
         "--data_name",
         type=str,
-        default="covertype",
+        default="breast_cancer",
         choices=["breast_cancer", "phishing_websites", "credit", "skin", "covertype"],
         help="dataset: {breast_cancer, phishing_websites, credit, skin, covertype}"
     )
     parser.add_argument(
         "--max_height",
         type=int,
-        default=4,
+        default=10,
         help="Max tree height: int"
     )
     parser.add_argument(
@@ -340,7 +342,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--alg_type",
         type=str,
-        default="HEP-XGB",
+        default="Ours",
         choices=["Ours", "SiGBDT", "HEP-XGB"],
         help="Secure training algorithm: {Ours, SiGBDT, HEP-XGB}"
     )
